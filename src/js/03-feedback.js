@@ -5,35 +5,30 @@ const refs = {
   email: document.querySelector('.feedback-form input'),
   textarea: document.querySelector('.feedback-form textarea'),
 };
-let feedbackFormState = {
-  email: '',
-  message: '',
-};
 
 refs.form.addEventListener('input', throttle(onFormInput, 500));
 refs.form.addEventListener('submit', onFormSumbit);
 
 function onFormSumbit(e) {
   e.preventDefault();
-  console.log('Email:', refs.email.value);
-  console.log('Message:', refs.textarea.value);
+  let values = {
+    email: `${refs.email.value}`,
+    message: `${refs.textarea.value}`,
+  };
+  console.log(values);
   localStorage.removeItem('feedback-form-state');
   refs.email.value = '';
   refs.textarea.value = '';
 }
 
 function onFormInput(e) {
-  if (e.target.nodeName === 'INPUT') {
-    feedbackFormState.email = e.target.value;
-  }
-  if (e.target.nodeName === 'TEXTAREA') {
-    feedbackFormState.message = e.target.value;
-  }
-  localStorage.setItem(
-    'feedback-form-state',
-    JSON.stringify(feedbackFormState)
-  );
+  let values = {
+    email: `${refs.email.value}`,
+    message: `${refs.textarea.value}`,
+  };
+  localStorage.setItem('feedback-form-state', JSON.stringify(values));
 }
+
 populateEmail();
 
 function populateEmail() {

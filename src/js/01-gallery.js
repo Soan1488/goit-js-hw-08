@@ -26,4 +26,3 @@ let lightbox = new SimpleLightbox('.gallery a', {
 lightbox.on('show.simplelightbox', () => {});
 
 console.log(galleryItems);
-nsole.log(galleryItems);
