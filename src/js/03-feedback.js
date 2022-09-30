@@ -15,10 +15,14 @@ function onFormSumbit(e) {
     email: `${refs.email.value}`,
     message: `${refs.textarea.value}`,
   };
-  console.log(values);
-  localStorage.removeItem('feedback-form-state');
-  refs.email.value = '';
-  refs.textarea.value = '';
+  if (values.email === '' || values.message === '') {
+    alert('please fill in all fields');
+  } else {
+    console.log(values);
+    localStorage.removeItem('feedback-form-state');
+    refs.email.value = '';
+    refs.textarea.value = '';
+  }
 }
 
 function onFormInput(e) {
